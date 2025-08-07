@@ -7,7 +7,11 @@
     },
     {
       "src": "api/ml-service/main.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "35mb",
+        "build": "pip install -r requirements.txt && python precompute.py"
+      }
     },
     {
       "src": "frontend/package.json",
