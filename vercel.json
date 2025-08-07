@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/backend/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/ml-service/main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/backend/:path*",
+      "destination": "/api/backend/index.js"
+    },
+    {
+      "source": "/api/ml-service/:path*",
+      "destination": "/api/ml-service/main.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend"
+    }
+  ]
+}

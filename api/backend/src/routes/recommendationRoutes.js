@@ -4,7 +4,7 @@ const Movie = require('../models/Movie');
 const router = express.Router();
 
 // The address of our future Python ML service
-const ML_SERVICE_URL = 'http://localhost:5002/recommend';
+const ML_SERVICE_URL = '/api/ml-service/recommend';
 
 router.get('/', async (req, res) => {
   const { title } = req.query;
