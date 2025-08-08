@@ -4,3 +4,4 @@ scikit-learn
 pandas
 pymongo[srv]
 python-dotenv
+awswrangler

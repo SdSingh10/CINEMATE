@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/recommend": {
+      "name": "/recommend",
+      "lambdaFunction": "mlService",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

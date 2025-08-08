@@ -2,26 +2,25 @@ import pickle
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import awswrangler as wr # Using AWS Wrangler
+import os
 
-# --- 1. SETUP AND MODEL LOADING ---
-app = FastAPI(
-    title="CINEMATE Recommendation Service",
-    description="A machine learning microservice for providing movie recommendations.",
-    version="1.0.0"
-)
+# --- 1. AWS SETUP AND MODEL LOADING ---
+# Amplify will provide the S3 bucket name as an environment variable
+S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
 
-# Load the pre-computed data when the application starts
+app = FastAPI(title="CINEMATE Recommendation Service")
+
 try:
-    print("Loading pre-computed data...")
-    movies_df = pickle.load(open('computed_data/movies.pkl', 'rb'))
-    cosine_sim = pickle.load(open('computed_data/cosine_sim.pkl', 'rb'))
+    print(f"Loading data from S3 bucket: s3://{S3_BUCKET_NAME}/movies.pkl")
+    # Use AWS Wrangler to easily read objects from S3
+    movies_df = wr.s3.read_pickle(path=f"s3://{S3_BUCKET_NAME}/movies.pkl")
+    cosine_sim = wr.s3.read_pickle(path=f"s3://{S3_BUCKET_NAME}/cosine_sim.pkl")
     print("Data loaded successfully.")
-except FileNotFoundError:
-    print("ERROR: Computed data files not found. Please run precompute.py first.")
-    # In a real production app, you might want to handle this more gracefully
+except Exception as e:
+    print(f"ERROR: Could not load data from S3. {e}")
     exit()
 
-# Create a mapping from movie title to dataframe index for quick lookups
 indices = pd.Series(movies_df.index, index=movies_df['title']).drop_duplicates()
 
 # --- 2. API DATA MODELS ---

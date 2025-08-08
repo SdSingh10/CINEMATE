@@ -1,0 +1,12 @@
+{
+  "resourceName": "ModelStorage",
+  "policyUUID": "f4b963dd",
+  "bucketName": "cinematemodel2004",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
