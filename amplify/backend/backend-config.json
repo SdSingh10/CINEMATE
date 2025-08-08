@@ -30,7 +30,7 @@
     }
   },
   "auth": {
-    "cinematebceab24f": {
+    "cinemate7b1ba3f5": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -72,18 +72,25 @@
     },
     "nodeBackend": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "ApiName",
+            "ApiId"
+          ],
+          "category": "api",
+          "resourceName": "mlapi"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_mlService_modelStorage": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "mlService"
-        }
-      ]
+  "hosting": {
+    "amplifyhosting": {
+      "lastPushTimeStamp": "2025-08-08T21:28:06.111Z",
+      "service": "amplifyhosting",
+      "type": "cicd"
     }
   },
   "storage": {

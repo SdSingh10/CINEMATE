@@ -1,25 +1,30 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cinemate-dev-834ae-authRole",
-      "UnauthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-834ae-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-834ae-authRole",
+      "AuthRoleName": "amplify-cinemate-dev-7f4ca-authRole",
+      "UnauthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-7f4ca-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-7f4ca-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-cinemate-dev-834ae-deployment",
-      "UnauthRoleName": "amplify-cinemate-dev-834ae-unauthRole",
-      "StackName": "amplify-cinemate-dev-834ae",
-      "StackId": "arn:aws:cloudformation:ap-south-1:343725796891:stack/amplify-cinemate-dev-834ae/c51c7fd0-748f-11f0-9880-06d6c1d0c367",
-      "AmplifyAppId": "d1g57vtirvx40j"
+      "DeploymentBucketName": "amplify-cinemate-dev-7f4ca-deployment",
+      "UnauthRoleName": "amplify-cinemate-dev-7f4ca-unauthRole",
+      "StackName": "amplify-cinemate-dev-7f4ca",
+      "StackId": "arn:aws:cloudformation:ap-south-1:343725796891:stack/amplify-cinemate-dev-7f4ca/bdcd1660-749c-11f0-8ea9-027675e7a277",
+      "AmplifyAppId": "d1vmcm14slsg3d",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-cinemate-dev-7f4ca-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "cinematebceab24f": {}
+        "cinemate7b1ba3f5": {}
       },
       "function": {
-        "mlService": {
-          "modelStorage": "cinematemodel2004"
-        },
+        "mlService": {},
         "nodeBackend": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1vmcm14slsg3d",
+          "type": "cicd"
+        }
       }
     }
   }

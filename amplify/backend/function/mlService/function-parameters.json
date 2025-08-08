@@ -6,11 +6,5 @@
       ]
     }
   },
-  "lambdaLayers": [],
-  "environmentVariableList": [
-    {
-      "cloudFormationParameterName": "modelStorage",
-      "environmentVariableName": "ModelStorage"
-    }
-  ]
+  "lambdaLayers": []
 }

@@ -5,7 +5,10 @@
       "name": "/recommend",
       "lambdaFunction": "mlService",
       "permissions": {
-        "setting": "open"
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
       }
     }
   }

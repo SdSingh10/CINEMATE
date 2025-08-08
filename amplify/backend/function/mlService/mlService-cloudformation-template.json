@@ -16,9 +16,6 @@
     "s3Key": {
       "Type": "String"
     },
-    "modelStorage": {
-      "Type": "String"
-    },
     "storageModelStorageBucketName": {
       "Type": "String",
       "Default": "storageModelStorageBucketName"
@@ -79,9 +76,6 @@
             },
             "STORAGE_MODELSTORAGE_BUCKETNAME": {
               "Ref": "storageModelStorageBucketName"
-            },
-            "ModelStorage": {
-              "Ref": "modelStorage"
             }
           }
         },
@@ -102,12 +96,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cinemateLambdaRole0b6f2c2e",
+            "cinemateLambdaRole1fe346c1",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cinemateLambdaRole0b6f2c2e",
+                  "cinemateLambdaRole1fe346c1",
                   "-",
                   {
                     "Ref": "env"
