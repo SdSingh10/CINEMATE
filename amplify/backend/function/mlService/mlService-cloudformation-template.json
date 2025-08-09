@@ -85,7 +85,8 @@
             "Arn"
           ]
         },
-        "Runtime": "python3.8",
+        "Runtime": "python3.11",
+        "BuildMethod": "python3.11",
         "Layers": [],
         "Timeout": 25
       }
