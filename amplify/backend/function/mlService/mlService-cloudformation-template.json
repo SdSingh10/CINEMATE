@@ -48,7 +48,6 @@
           }
         },
         "Handler": "index.handler",
-        "BuildMethod": "python3.11",
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
