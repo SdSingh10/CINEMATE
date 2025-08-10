@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\chawl\OneDrive\Desktop\Shubham\Web designing\movie-recommendation\CINEMATE\ml-service\venv"
+VIRTUAL_ENV="C:\Users\chawl\OneDrive\Desktop\Shubham\Web designing\movie-recommendation\CINEMATE\api\ml-service\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

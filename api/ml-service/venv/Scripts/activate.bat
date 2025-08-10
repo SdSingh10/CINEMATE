@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\chawl\OneDrive\Desktop\Shubham\Web designing\movie-recommendation\CINEMATE\ml-service\venv
+set VIRTUAL_ENV=C:\Users\chawl\OneDrive\Desktop\Shubham\Web designing\movie-recommendation\CINEMATE\api\ml-service\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
