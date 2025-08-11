@@ -12,7 +12,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "cinemate7b1ba3f5": {
+    "cinemate7e3a0402": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -23,7 +23,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "mlService": {
+    "cinematemodel2004": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -39,7 +39,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "ModelStorage": {
+    "s3ModelStorage": {
       "BucketName": "string",
       "Region": "string"
     }

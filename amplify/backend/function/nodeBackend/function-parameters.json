@@ -1,10 +1,13 @@
 {
-  "permissions": {
-    "api": {
-      "mlapi": [
-        "read"
-      ]
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "mongoUri",
+      "environmentVariableName": "MONGO_URI"
+    },
+    {
+      "cloudFormationParameterName": "tmdbApiKey",
+      "environmentVariableName": "TMDB_API_KEY"
     }
-  },
-  "lambdaLayers": []
+  ]
 }

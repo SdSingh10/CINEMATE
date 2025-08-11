@@ -3,12 +3,9 @@
   "paths": {
     "/recommend": {
       "name": "/recommend",
-      "lambdaFunction": "mlService",
+      "lambdaFunction": "cinematemodel2004",
       "permissions": {
-        "setting": "private",
-        "auth": [
-          "read"
-        ]
+        "setting": "open"
       }
     }
   }

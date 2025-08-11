@@ -1,6 +1,6 @@
 {
-  "resourceName": "ModelStorage",
-  "policyUUID": "b2edf820",
+  "resourceName": "s3ModelStorage",
+  "policyUUID": "c49f6451",
   "bucketName": "cinematemodel2004",
   "storageAccess": "auth",
   "guestAccess": [],

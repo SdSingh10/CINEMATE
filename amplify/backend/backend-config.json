@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "mlService"
+          "resourceName": "cinematemodel2004"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -30,7 +30,7 @@
     }
   },
   "auth": {
-    "cinemate7b1ba3f5": {
+    "cinemate7e3a0402": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -56,7 +56,7 @@
     }
   },
   "function": {
-    "mlService": {
+    "cinematemodel2004": {
       "build": true,
       "dependsOn": [
         {
@@ -64,7 +64,7 @@
             "BucketName"
           ],
           "category": "storage",
-          "resourceName": "ModelStorage"
+          "resourceName": "s3ModelStorage"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -72,29 +72,20 @@
     },
     "nodeBackend": {
       "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "ApiName",
-            "ApiId"
-          ],
-          "category": "api",
-          "resourceName": "mlapi"
-        }
-      ],
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "hosting": {
     "amplifyhosting": {
-      "lastPushTimeStamp": "2025-08-08T21:28:06.111Z",
+      "lastPushTimeStamp": "2025-08-11T06:46:38.881Z",
       "service": "amplifyhosting",
       "type": "cicd"
     }
   },
   "storage": {
-    "ModelStorage": {
+    "s3ModelStorage": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

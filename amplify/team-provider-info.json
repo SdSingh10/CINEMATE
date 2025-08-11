@@ -1,28 +1,32 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cinemate-dev-7f4ca-authRole",
-      "UnauthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-7f4ca-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-7f4ca-authRole",
+      "AuthRoleName": "amplify-cinemate-dev-e6e45-authRole",
+      "UnauthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-e6e45-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::343725796891:role/amplify-cinemate-dev-e6e45-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-cinemate-dev-7f4ca-deployment",
-      "UnauthRoleName": "amplify-cinemate-dev-7f4ca-unauthRole",
-      "StackName": "amplify-cinemate-dev-7f4ca",
-      "StackId": "arn:aws:cloudformation:ap-south-1:343725796891:stack/amplify-cinemate-dev-7f4ca/bdcd1660-749c-11f0-8ea9-027675e7a277",
-      "AmplifyAppId": "d1vmcm14slsg3d",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-cinemate-dev-7f4ca-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-cinemate-dev-e6e45-deployment",
+      "UnauthRoleName": "amplify-cinemate-dev-e6e45-unauthRole",
+      "StackName": "amplify-cinemate-dev-e6e45",
+      "StackId": "arn:aws:cloudformation:ap-south-1:343725796891:stack/amplify-cinemate-dev-e6e45/18e14b20-7673-11f0-a5c6-0a7e223bb363",
+      "AmplifyAppId": "d3jt5s3zso732l"
     },
     "categories": {
       "auth": {
-        "cinemate7b1ba3f5": {}
+        "cinemate7e3a0402": {}
       },
       "function": {
-        "mlService": {},
-        "nodeBackend": {}
+        "cinematemodel2004": {
+          "s3BucketName": "cinematemodel2004"
+        },
+        "nodeBackend": {
+          "mongoUri": "mongodb+srv://cinemateUser:Shsd101104@cinematecluster.17wkh9c.mongodb.net/?retryWrites=true&w=majority&appName=CinemateCluster",
+          "tmdbApiKey": "a492f55a790839027cb9593c88e0c3a7"
+        }
       },
       "hosting": {
         "amplifyhosting": {
-          "appId": "d1vmcm14slsg3d",
+          "appId": "d3jt5s3zso732l",
           "type": "cicd"
         }
       }

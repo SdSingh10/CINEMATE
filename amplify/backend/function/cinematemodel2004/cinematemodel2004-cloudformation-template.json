@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"14.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Prefer not to answer\"}}",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,9 +16,12 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageModelStorageBucketName": {
+    "s3BucketName": {
+      "Type": "String"
+    },
+    "storages3ModelStorageBucketName": {
       "Type": "String",
-      "Default": "storageModelStorageBucketName"
+      "Default": "storages3ModelStorageBucketName"
     }
   },
   "Conditions": {
@@ -51,12 +54,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "mlService",
+            "cinematemodel2004",
             {
               "Fn::Join": [
                 "",
                 [
-                  "mlService",
+                  "cinematemodel2004",
                   "-",
                   {
                     "Ref": "env"
@@ -74,8 +77,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_MODELSTORAGE_BUCKETNAME": {
-              "Ref": "storageModelStorageBucketName"
+            "STORAGE_S3MODELSTORAGE_BUCKETNAME": {
+              "Ref": "storages3ModelStorageBucketName"
+            },
+            "S3_BUCKET_NAME": {
+              "Ref": "s3BucketName"
             }
           }
         },
@@ -85,8 +91,7 @@
             "Arn"
           ]
         },
-        "Runtime": "python3.11",
-        "BuildMethod": "python3.11",
+        "Runtime": "python3.8",
         "Layers": [],
         "Timeout": 25
       }
@@ -97,12 +102,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cinemateLambdaRole1fe346c1",
+            "cinemateLambdaRole73dc14a5",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cinemateLambdaRole1fe346c1",
+                  "cinemateLambdaRole73dc14a5",
                   "-",
                   {
                     "Ref": "env"
@@ -198,7 +203,7 @@
                     [
                       "arn:aws:s3:::",
                       {
-                        "Ref": "storageModelStorageBucketName"
+                        "Ref": "storages3ModelStorageBucketName"
                       }
                     ]
                   ]
@@ -217,7 +222,7 @@
                     [
                       "arn:aws:s3:::",
                       {
-                        "Ref": "storageModelStorageBucketName"
+                        "Ref": "storages3ModelStorageBucketName"
                       },
                       "/*"
                     ]

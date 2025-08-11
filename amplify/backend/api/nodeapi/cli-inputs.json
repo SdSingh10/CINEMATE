@@ -5,10 +5,7 @@
       "name": "/recommendations",
       "lambdaFunction": "nodeBackend",
       "permissions": {
-        "setting": "private",
-        "auth": [
-          "read"
-        ]
+        "setting": "open"
       }
     }
   }

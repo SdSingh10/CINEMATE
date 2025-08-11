@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"14.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Prefer not to answer\"}}",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,13 +16,11 @@
     "s3Key": {
       "Type": "String"
     },
-    "apimlapiApiName": {
-      "Type": "String",
-      "Default": "apimlapiApiName"
+    "mongoUri": {
+      "Type": "String"
     },
-    "apimlapiApiId": {
-      "Type": "String",
-      "Default": "apimlapiApiId"
+    "tmdbApiKey": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -78,11 +76,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "API_MLAPI_APINAME": {
-              "Ref": "apimlapiApiName"
+            "MONGO_URI": {
+              "Ref": "mongoUri"
             },
-            "API_MLAPI_APIID": {
-              "Ref": "apimlapiApiId"
+            "TMDB_API_KEY": {
+              "Ref": "tmdbApiKey"
             }
           }
         },
@@ -103,12 +101,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cinemateLambdaRole9d6b0c59",
+            "cinemateLambdaRole6beec6b3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cinemateLambdaRole9d6b0c59",
+                  "cinemateLambdaRole6beec6b3",
                   "-",
                   {
                     "Ref": "env"
@@ -174,51 +172,6 @@
                   }
                 ]
               }
-            }
-          ]
-        }
-      }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "apigateway:GET",
-                "apigateway:HEAD",
-                "apigateway:OPTIONS"
-              ],
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      "::/restapis/",
-                      {
-                        "Ref": "apimlapiApiName"
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
             }
           ]
         }
