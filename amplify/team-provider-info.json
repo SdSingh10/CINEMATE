@@ -17,11 +17,15 @@
       },
       "function": {
         "cinematemodel2004": {
-          "s3BucketName": "cinematemodel2004"
+          "s3BucketName": "cinematemodel2004",
+          "deploymentBucketName": "amplify-cinemate-dev-e6e45-deployment",
+          "s3Key": "amplify-builds/cinematemodel2004-5a456267787758333356-build.zip"
         },
         "nodeBackend": {
           "mongoUri": "mongodb+srv://cinemateUser:Shsd101104@cinematecluster.17wkh9c.mongodb.net/?retryWrites=true&w=majority&appName=CinemateCluster",
-          "tmdbApiKey": "a492f55a790839027cb9593c88e0c3a7"
+          "tmdbApiKey": "a492f55a790839027cb9593c88e0c3a7",
+          "deploymentBucketName": "amplify-cinemate-dev-e6e45-deployment",
+          "s3Key": "amplify-builds/nodeBackend-6e484d676854764a7574-build.zip"
         }
       },
       "hosting": {
@@ -29,6 +33,13 @@
           "appId": "d3jt5s3zso732l",
           "type": "cicd"
         }
+      },
+      "storage": {
+        "s3ModelStorage": {}
+      },
+      "api": {
+        "mlapi": {},
+        "nodeapi": {}
       }
     }
   }

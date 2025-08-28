@@ -84,6 +84,80 @@
       "type": "cicd"
     }
   },
+  "parameters": {
+    "AMPLIFY_function_cinematemodel2004_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cinematemodel2004"
+        }
+      ]
+    },
+    "AMPLIFY_function_cinematemodel2004_s3BucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cinematemodel2004"
+        }
+      ]
+    },
+    "AMPLIFY_function_cinematemodel2004_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cinematemodel2004"
+        }
+      ]
+    },
+    "AMPLIFY_function_nodeBackend_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nodeBackend"
+        }
+      ]
+    },
+    "AMPLIFY_function_nodeBackend_mongoUri": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nodeBackend"
+        }
+      ]
+    },
+    "AMPLIFY_function_nodeBackend_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nodeBackend"
+        }
+      ]
+    },
+    "AMPLIFY_function_nodeBackend_tmdbApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nodeBackend"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    }
+  },
   "storage": {
     "s3ModelStorage": {
       "dependsOn": [],
