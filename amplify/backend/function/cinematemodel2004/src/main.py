@@ -1,13 +1,13 @@
-import pickle
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import awswrangler as wr # Using AWS Wrangler
+import awswrangler as wr  # Using AWS Wrangler
 import os
+from mangum import Mangum  # <-- added for AWS Lambda adapter
 
 # --- 1. AWS SETUP AND MODEL LOADING ---
 # Amplify will provide the S3 bucket name as an environment variable
-S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
+S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME")
 
 app = FastAPI(title="CINEMATE Recommendation Service")
 
@@ -19,22 +19,23 @@ try:
     print("Data loaded successfully.")
 except Exception as e:
     print(f"ERROR: Could not load data from S3. {e}")
-    exit()
+    # For Lambda, raise instead of exit so errors show in CloudWatch
+    raise
 
-indices = pd.Series(movies_df.index, index=movies_df['title']).drop_duplicates()
+indices = pd.Series(movies_df.index, index=movies_df["title"]).drop_duplicates()
 
 # --- 2. API DATA MODELS ---
-# Define the structure of the request body using Pydantic
 class RecommendationRequest(BaseModel):
     title: str
     num_recommendations: int = 10
 
-# Define the structure of the response
+
 class RecommendationResponse(BaseModel):
     message: str
-    recommendations: list[str] # A list of tmdbIds
+    recommendations: list[str]  # A list of tmdbIds
 
-# --- 3. API ENDPOINT ---
+
+# --- 3. API ENDPOINTS ---
 @app.post("/recommend", response_model=RecommendationResponse)
 def get_recommendations(request: RecommendationRequest):
     """
@@ -45,36 +46,31 @@ def get_recommendations(request: RecommendationRequest):
 
     print(f"Received recommendation request for title: '{title}'")
 
-    # Check if the movie title exists in our dataset
     if title not in indices:
         raise HTTPException(
             status_code=404,
-            detail=f"Movie with title '{title}' not found in the dataset."
+            detail=f"Movie with title '{title}' not found in the dataset.",
         )
 
-    # Get the index of the movie that matches the title
     idx = indices[title]
 
-    # Get the pairwise similarity scores of all movies with that movie
     sim_scores = list(enumerate(cosine_sim[idx]))
-
-    # Sort the movies based on the similarity scores
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[1 : num_recommendations + 1]  # skip itself
 
-    # Get the scores of the 10 most similar movies (index 0 is the movie itself)
-    sim_scores = sim_scores[1:num_recommendations + 1]
-
-    # Get the movie indices
     movie_indices = [i[0] for i in sim_scores]
-
-    # Get the tmdbIds for the top recommended movies
-    recommended_tmdb_ids = movies_df['tmdbId'].iloc[movie_indices].tolist()
+    recommended_tmdb_ids = movies_df["tmdbId"].iloc[movie_indices].tolist()
 
     return {
         "message": "Recommendations generated successfully.",
-        "recommendations": recommended_tmdb_ids
+        "recommendations": recommended_tmdb_ids,
     }
+
 
 @app.get("/")
 def read_root():
     return {"status": "CINEMATE ML Service is running."}
+
+
+# --- 4. LAMBDA HANDLER ---
+handler = Mangum(app)

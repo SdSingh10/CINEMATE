@@ -1,9 +1,7 @@
 {
   "permissions": {
     "storage": {
-      "s3ModelStorage": [
-        "read"
-      ]
+      "s3ModelStorage": ["read"]
     }
   },
   "lambdaLayers": [],
@@ -12,5 +10,6 @@
       "cloudFormationParameterName": "s3BucketName",
       "environmentVariableName": "S3_BUCKET_NAME"
     }
-  ]
+  ],
+  "handler": "main.handler"
 }
