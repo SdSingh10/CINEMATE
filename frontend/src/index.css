@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+:root {
+  --color-bg: #0d0c0f;
+  --color-surface: #1a181f;
+  --color-glass: rgba(26, 24, 31, 0.5);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #a09da6;
+  --color-accent: #8a42f5; /* A vibrant purple accent */
+  --color-accent-hover: #7b38d9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
