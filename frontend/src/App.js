@@ -31,11 +31,13 @@ const gridVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
+
+// Set your backend base URL via env var (CRA uses REACT_APP_*)
+// Example: REACT_APP_API_BASE=https://<your-api-gateway-domain>
+const API_BASE = process.env.https://main.d1vmcm14slsg3d.amplifyapp.com/?.replace(/\/+$/, '') || '';
 
 function App() {
   const [recommendations, setRecommendations] = useState([]);
@@ -51,28 +53,39 @@ function App() {
     setRecommendations([]);
 
     try {
-      const response = await fetch(`/api/backend/recommendations?title=${encodeURIComponent(query)}`);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.msg || 'Could not fetch recommendations.');
+      const res = await fetch(`${API_BASE}/recommend`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: query, num_recommendations: 10 }),
+      });
+
+      if (!res.ok) {
+        // Try to read a JSON error; fallback to text
+        let msg = `Request failed (${res.status})`;
+        try {
+          const j = await res.json();
+          msg = j.detail || j.message || msg;
+        } catch (_) {
+          const t = await res.text();
+          if (t) msg = t;
+        }
+        throw new Error(msg);
       }
-      const data = await response.json();
-      setRecommendations(data);
+
+      const data = await res.json();
+      // Backend returns: { message, recommendations: [tmdbId,...] }
+      const items = (data.recommendations || []).map((id) => ({ tmdbId: id }));
+      setRecommendations(items);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Could not fetch recommendations.');
       setRecommendations([]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleMovieClick = (movie) => {
-    setSelectedMovie(movie);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedMovie(null);
-  };
+  const handleMovieClick = (movie) => setSelectedMovie(movie);
+  const handleCloseModal = () => setSelectedMovie(null);
 
   const renderContent = () => {
     if (isLoading) return <Loader />;
@@ -80,7 +93,7 @@ function App() {
     if (recommendations.length > 0) {
       return (
         <MovieGrid variants={gridVariants} initial="hidden" animate="visible">
-          {recommendations.map(movie => (
+          {recommendations.map((movie) => (
             <MovieCard key={movie.tmdbId} movie={movie} onClick={handleMovieClick} />
           ))}
         </MovieGrid>
