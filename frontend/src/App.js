@@ -35,9 +35,8 @@ const gridVariants = {
   },
 };
 
-// Set your backend base URL via env var (CRA uses REACT_APP_*)
-// Example: REACT_APP_API_BASE=https://<your-api-gateway-domain>
-const API_BASE = process.env.https://main.d1vmcm14slsg3d.amplifyapp.com/?.replace(/\/+$/, '') || '';
+// Read backend base URL from environment
+const API_BASE = process.env.REACT_APP_API_BASE?.replace(/\/+$/, '') || '';
 
 function App() {
   const [recommendations, setRecommendations] = useState([]);
@@ -60,12 +59,11 @@ function App() {
       });
 
       if (!res.ok) {
-        // Try to read a JSON error; fallback to text
         let msg = `Request failed (${res.status})`;
         try {
           const j = await res.json();
           msg = j.detail || j.message || msg;
-        } catch (_) {
+        } catch {
           const t = await res.text();
           if (t) msg = t;
         }
@@ -73,7 +71,6 @@ function App() {
       }
 
       const data = await res.json();
-      // Backend returns: { message, recommendations: [tmdbId,...] }
       const items = (data.recommendations || []).map((id) => ({ tmdbId: id }));
       setRecommendations(items);
     } catch (err) {
